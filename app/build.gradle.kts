@@ -50,8 +50,8 @@ dependencies {
     kapt(libs.androidx.databinding.compiler)
     implementation(libs.hilt.android)
     kapt(libs.hilt.android.compiler)
-
     implementation(libs.retrofit)
+    implementation(libs.logging.interceptor)
     implementation(libs.moshi.kotlin)
     //noinspection KaptUsageInsteadOfKsp
     kapt(libs.moshi.kotlin.codegen)
