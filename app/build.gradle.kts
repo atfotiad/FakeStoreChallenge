@@ -50,6 +50,12 @@ dependencies {
     kapt(libs.androidx.databinding.compiler)
     implementation(libs.hilt.android)
     kapt(libs.hilt.android.compiler)
+
+    implementation(libs.retrofit)
+    implementation(libs.moshi.kotlin)
+    //noinspection KaptUsageInsteadOfKsp
+    kapt(libs.moshi.kotlin.codegen)
+    implementation(libs.converter.moshi)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
