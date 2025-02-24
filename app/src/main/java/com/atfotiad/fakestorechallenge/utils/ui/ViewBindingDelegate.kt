@@ -1,52 +1,66 @@
 package com.atfotiad.fakestorechallenge.utils.ui
 
 import android.view.LayoutInflater
+import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.DefaultLifecycleObserver
-import androidx.lifecycle.LifecycleOwner
 import androidx.viewbinding.ViewBinding
 import kotlin.properties.ReadOnlyProperty
 import kotlin.reflect.KProperty
 
-inline fun <T : ViewBinding> Fragment.viewDataBinding(
-    crossinline bindingInflater: (LayoutInflater) -> T
-): ReadOnlyProperty<Fragment, T> =
-    object : ReadOnlyProperty<Fragment, T>, DefaultLifecycleObserver {
-        private var binding: T? = null
+inline fun <reified T : ViewBinding> AppCompatActivity.viewDataBinding() =
+    ActivityViewBindingDelegate(T::class.java, this)
 
-        override fun getValue(thisRef: Fragment, property: KProperty<*>): T {
-            if (binding == null) {
-                binding = bindingInflater.invoke(layoutInflater)
-                thisRef.viewLifecycleOwner.lifecycle.addObserver(this)
-            }
-            return binding!!
-        }
+inline fun <reified T : ViewBinding> Fragment.viewDataBinding() =
+    FragmentViewBindingDelegate(T::class.java, this)
 
-        override fun onDestroy(owner: LifecycleOwner) {
-            binding = null
+class ActivityViewBindingDelegate<T : ViewBinding>(
+    private val bindingClass: Class<T>,
+    private val activity: AppCompatActivity,
+) : ReadOnlyProperty<AppCompatActivity, T> {
+
+    private var binding: T? = null
+
+    override fun getValue(thisRef: AppCompatActivity, property: KProperty<*>): T {
+        binding?.let { return it }
+
+        val inflateMethod = bindingClass.getMethod("inflate", LayoutInflater::class.java)
+        val invokedBinding = inflateMethod.invoke(null, thisRef.layoutInflater) as T
+        binding = invokedBinding
+        activity.setContentView(binding!!.root)
+        return binding!!
+    }
+}
+
+class FragmentViewBindingDelegate<T : ViewBinding>(
+    private val bindingClass: Class<T>,
+    val fragment: Fragment,
+) : ReadOnlyProperty<Fragment, T> {
+
+    private var binding: T? = null
+
+    init {
+        fragment.viewLifecycleOwnerLiveData.observe(fragment) { viewLifecycleOwner ->
+            viewLifecycleOwner.lifecycle.addObserver(object :
+                androidx.lifecycle.DefaultLifecycleObserver {
+                override fun onDestroy(owner: androidx.lifecycle.LifecycleOwner) {
+                    binding = null
+                }
+            })
         }
     }
 
-inline fun <T : ViewBinding> AppCompatActivity.viewDataBinding(
-    crossinline bindingInflater: (LayoutInflater) -> T
-): ReadOnlyProperty<AppCompatActivity, T> =
-    object : ReadOnlyProperty<AppCompatActivity, T>, DefaultLifecycleObserver {
-        private var binding: T? = null
+    override fun getValue(thisRef: Fragment, property: KProperty<*>): T {
+        binding?.let { return it }
 
-        init {
-            lifecycle.addObserver(this)
-        }
-
-        override fun getValue(thisRef: AppCompatActivity, property: KProperty<*>): T {
-            if (binding == null) {
-                binding = bindingInflater.invoke(layoutInflater)
-                setContentView(binding!!.root)
-            }
-            return binding!!
-        }
-
-        override fun onDestroy(owner: LifecycleOwner) {
-            binding = null
-        }
+        val inflateMethod = bindingClass.getMethod(
+            "inflate",
+            LayoutInflater::class.java,
+            ViewGroup::class.java,
+            Boolean::class.java
+        )
+        val invokedBinding = inflateMethod.invoke(null, thisRef.layoutInflater, null, false) as T
+        binding = invokedBinding
+        return binding!!
     }
+}
