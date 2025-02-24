@@ -51,6 +51,7 @@ dependencies {
     implementation(libs.androidx.annotation)
     implementation(libs.androidx.lifecycle.livedata.ktx)
     implementation(libs.androidx.lifecycle.viewmodel.ktx)
+    implementation(libs.androidx.datastore.preferences)
     kapt(libs.androidx.databinding.compiler)
     implementation(libs.hilt.android)
     kapt(libs.hilt.android.compiler)
