@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/startFragment">
+
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.atfotiad.fakestorechallenge.ui.login.LoginFragment"
+        android:label="fragment_login"
+        tools:layout="@layout/fragment_login" />
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.atfotiad.fakestorechallenge.HomeFragment"
+        android:label="fragment_home"
+        tools:layout="@layout/fragment_home" />
+    <fragment
+        android:id="@+id/productDetailsFragment"
+        android:name="com.atfotiad.fakestorechallenge.ProductDetailsFragment"
+        android:label="fragment_product_details"
+        tools:layout="@layout/fragment_product_details" />
+    <fragment
+        android:id="@+id/productEditFragment"
+        android:name="com.atfotiad.fakestorechallenge.ProductEditFragment"
+        android:label="fragment_product_edit"
+        tools:layout="@layout/fragment_product_edit" />
+    <fragment
+        android:id="@+id/startFragment"
+        android:name="com.atfotiad.fakestorechallenge.ui.login.StartFragment"
+        android:label="fragment_start"
+        tools:layout="@layout/fragment_start" />
+</navigation>
