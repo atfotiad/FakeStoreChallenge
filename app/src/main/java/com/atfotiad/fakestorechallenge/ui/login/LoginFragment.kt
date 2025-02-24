@@ -1,6 +1,7 @@
 package com.atfotiad.fakestorechallenge.ui.login
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -19,7 +20,7 @@ import javax.inject.Inject
 @AndroidEntryPoint
 class LoginFragment : Fragment(R.layout.fragment_login) {
     private val viewModel: LoginViewModel by viewModels()
-    private val binding by viewDataBinding(FragmentLoginBinding::inflate)
+    private val binding: FragmentLoginBinding by viewDataBinding()
 
     @Inject
     lateinit var tokenManager: TokenManager
@@ -30,6 +31,7 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
         binding.lifecycleOwner = viewLifecycleOwner
 
         binding.loginButton.setOnClickListener {
+            Log.d("Login", "onViewCreated: Login clicked")
             val username = binding.username.text.toString()
             val password = binding.password.text.toString()
             viewModel.login(username, password)
@@ -65,25 +67,18 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
         // Reset UI elements to their default state
         binding.username.isEnabled = true
         binding.password.isEnabled = true
-        //binding.loginButton.isEnabled = true
         binding.progressBar.visibility = View.GONE
-        //binding.errorTextView.visibility = View.GONE
-        //binding.errorTextView.text = ""
-        // Clear any previous input
         binding.username.text.clear()
         binding.password.text.clear()
-        // Optionally, you can set focus to the username field
         binding.username.requestFocus()
     }
 
     private fun handleLoadingState() {
-        // Disable input fields and the login button
         binding.username.isEnabled = false
         binding.password.isEnabled = false
         binding.loginButton.isEnabled = false
-        // Show the progress bar
         binding.progressBar.visibility = View.VISIBLE
-        // Hide the error message
+
         //binding.errorTextView.visibility = View.GONE
         //binding.errorTextView.text = ""
     }
@@ -98,11 +93,9 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
     }
 
     private fun handleErrorState(exception: Exception) {
-        // Enable input fields and the login button
         binding.username.isEnabled = true
         binding.password.isEnabled = true
         binding.loginButton.isEnabled = true
-        // Hide the progress bar
         binding.progressBar.visibility = View.GONE
         // Show the error message
         //binding.errorTextView.visibility = View.VISIBLE

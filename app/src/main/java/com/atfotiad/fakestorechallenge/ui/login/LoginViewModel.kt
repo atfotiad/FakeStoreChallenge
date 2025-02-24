@@ -28,10 +28,10 @@ class LoginViewModel @Inject constructor(
 
 
     val _username = MutableStateFlow("")
-    val username: StateFlow<String> = _username.asStateFlow()
+    private val username: StateFlow<String> = _username.asStateFlow()
 
     val _password = MutableStateFlow("")
-    val password: StateFlow<String> = _password.asStateFlow()
+    private val password: StateFlow<String> = _password.asStateFlow()
 
     private val _isLoginEnabled = MutableStateFlow(false)
     val isLoginEnabled: LiveData<Boolean> = _isLoginEnabled.asStateFlow().asLiveData()
@@ -42,7 +42,7 @@ class LoginViewModel @Inject constructor(
 
     private fun validateForm() {
         viewModelScope.launch {
-            combine(_username, _password) { username, password ->
+            combine(username, password) { username, password ->
                 val isUsernameValid = if (username.contains("@")) {
                     Patterns.EMAIL_ADDRESS.matcher(username).matches()
                 } else {
