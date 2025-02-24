@@ -19,7 +19,7 @@ import javax.inject.Inject
 @AndroidEntryPoint
 class LoginFragment : Fragment(R.layout.fragment_login) {
     private val viewModel: LoginViewModel by viewModels()
-    private val binding by viewDataBinding(FragmentLoginBinding::bind)
+    private val binding by viewDataBinding(FragmentLoginBinding::inflate)
 
     @Inject
     lateinit var tokenManager: TokenManager
