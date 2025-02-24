@@ -1,8 +1,8 @@
 package com.atfotiad.fakestorechallenge.data.repository
 
 import com.atfotiad.fakestorechallenge.api.ApiService
-import com.atfotiad.fakestorechallenge.model.LoginRequest
-import com.atfotiad.fakestorechallenge.model.LoginResponse
+import com.atfotiad.fakestorechallenge.data.model.LoginRequest
+import com.atfotiad.fakestorechallenge.data.model.LoginResponse
 import com.atfotiad.fakestorechallenge.utils.repository.RepoUtils.toResult
 import com.atfotiad.fakestorechallenge.utils.repository.Result
 import javax.inject.Inject
