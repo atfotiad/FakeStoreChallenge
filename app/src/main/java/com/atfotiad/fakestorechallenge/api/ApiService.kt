@@ -1,8 +1,8 @@
 package com.atfotiad.fakestorechallenge.api
 
-import com.atfotiad.fakestorechallenge.model.LoginRequest
-import com.atfotiad.fakestorechallenge.model.LoginResponse
-import com.atfotiad.fakestorechallenge.model.Product
+import com.atfotiad.fakestorechallenge.data.model.LoginRequest
+import com.atfotiad.fakestorechallenge.data.model.LoginResponse
+import com.atfotiad.fakestorechallenge.data.model.Product
 import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.GET

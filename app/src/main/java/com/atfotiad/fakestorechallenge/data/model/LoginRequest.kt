@@ -1,4 +1,4 @@
-package com.atfotiad.fakestorechallenge.model
+package com.atfotiad.fakestorechallenge.data.model
 
 data class LoginRequest(
     val username: String,

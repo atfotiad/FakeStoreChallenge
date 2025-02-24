@@ -1,8 +1,8 @@
 package com.atfotiad.fakestorechallenge.usecase
 
 import com.atfotiad.fakestorechallenge.data.repository.FakeStoreRepository
-import com.atfotiad.fakestorechallenge.model.LoginResponse
-import com.atfotiad.fakestorechallenge.model.Product
+import com.atfotiad.fakestorechallenge.data.model.LoginResponse
+import com.atfotiad.fakestorechallenge.data.model.Product
 import com.atfotiad.fakestorechallenge.utils.repository.Result
 import javax.inject.Inject
 import javax.inject.Singleton
