@@ -10,14 +10,19 @@ import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import com.atfotiad.fakestorechallenge.R
 import com.atfotiad.fakestorechallenge.databinding.FragmentLoginBinding
+import com.atfotiad.fakestorechallenge.security.TokenManager
 import com.atfotiad.fakestorechallenge.utils.ui.viewDataBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class LoginFragment : Fragment(R.layout.fragment_login) {
     private val viewModel: LoginViewModel by viewModels()
     private val binding by viewDataBinding(FragmentLoginBinding::bind)
+
+    @Inject
+    lateinit var tokenManager: TokenManager
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -84,15 +89,11 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
     }
 
     private fun handleSuccessState(token: String) {
-        findNavController().navigate(R.id.homeFragment)
 
-        // Navigate to the next screen
-        // For example:
-        // findNavController().navigate(R.id.action_loginFragment_to_homeFragment)
-        // Or show a success message
-        //binding.errorTextView.visibility = View.VISIBLE
-        //binding.errorTextView.text = "Success with token: $token"
-        // Reset the state to Idle
+        lifecycleScope.launch {
+            tokenManager.saveToken(token)
+        }
+        findNavController().navigate(R.id.homeFragment)
         viewModel.resetState()
     }
 
