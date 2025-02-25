@@ -3,6 +3,8 @@ plugins {
     alias(libs.plugins.kotlin.android)
     id("kotlin-kapt")
     id("com.google.dagger.hilt.android")
+    id("kotlin-parcelize")
+    id("com.google.devtools.ksp")
 }
 
 android {
@@ -54,12 +56,11 @@ dependencies {
     implementation(libs.androidx.datastore.preferences)
     kapt(libs.androidx.databinding.compiler)
     implementation(libs.hilt.android)
-    kapt(libs.hilt.android.compiler)
+    ksp(libs.hilt.compiler)
     implementation(libs.retrofit)
     implementation(libs.logging.interceptor)
     implementation(libs.moshi.kotlin)
-    //noinspection KaptUsageInsteadOfKsp
-    kapt(libs.moshi.kotlin.codegen)
+    ksp(libs.squareup.moshi.kotlin.codegen)
     implementation(libs.converter.moshi)
     implementation(libs.androidx.navigation.fragment.ktx)
     implementation(libs.androidx.navigation.ui.ktx)
