@@ -6,6 +6,8 @@ import androidx.databinding.InverseBindingAdapter
 import androidx.databinding.InverseBindingListener
 import kotlinx.coroutines.flow.MutableStateFlow
 
+/** Custom BindingAdapter for EditText. For two-way data binding.
+ * */
 object BindingAdapters {
     @JvmStatic
     @BindingAdapter("mutableText")
