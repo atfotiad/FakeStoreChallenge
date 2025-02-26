@@ -1,4 +1,4 @@
-package com.atfotiad.fakestorechallenge
+package com.atfotiad.fakestorechallenge.ui.main
 
 import android.os.Bundle
 import android.view.View
@@ -11,8 +11,8 @@ import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupWithNavController
+import com.atfotiad.fakestorechallenge.R
 import com.atfotiad.fakestorechallenge.databinding.ActivityMainBinding
-import com.atfotiad.fakestorechallenge.ui.main.MainViewModel
 import com.atfotiad.fakestorechallenge.utils.ui.viewDataBinding
 import dagger.hilt.android.AndroidEntryPoint
 
