@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="welcome_nback">Welcome \nBack!</string>
+    <string name="category_name">Category Name</string>
+    <string name="prompt_username_or_email">Username or Email</string>
+    <string name="login">Login</string>
+    <string name="edit">Edit</string>
+    <string name="product_name">Product Name</string>
+    <string name="product_price">Product Price</string>
+    <string name="product_description">Product Description</string>
+    <string name="all_featured">All Featured</string>
+    <string name="save">Save</string>
+    <string name="category">Category</string>
+</resources>
