@@ -2,7 +2,7 @@ package com.atfotiad.fakestorechallenge.api
 
 import com.atfotiad.fakestorechallenge.data.model.LoginRequest
 import com.atfotiad.fakestorechallenge.data.model.LoginResponse
-import com.atfotiad.fakestorechallenge.data.model.Product
+import com.atfotiad.fakestorechallenge.data.model.product.Product
 import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.GET
@@ -16,6 +16,9 @@ interface ApiService {
     @GET("/products/categories")
     suspend fun getCategories(): Response<List<String>>
 
+    @GET("/products")
+    suspend fun getAllProducts(): Response<List<Product>>
+
     @GET("/products/category/{category}")
     suspend fun getProductsByCategory(@Path("category") category: String): Response<List<Product>>
 
@@ -23,9 +26,9 @@ interface ApiService {
     suspend fun login(@Body loginRequest: LoginRequest): Response<LoginResponse>
 
     @PUT("/products/{id}")
-    suspend fun updateProduct(@Path("id") id: Int, @Body product: Product): Response<Product>
+    suspend fun updateProduct(@Path("id") id: Int, @Body product: Product): Response<Unit>
 
     @PATCH("/products/{id}")
-    suspend fun partiallyUpdateProduct(@Path("id") id: Int, @Body product: Product): Response<Product>
+    suspend fun partiallyUpdateProduct(@Path("id") id: Int, @Body product: Product): Response<Unit>
 
 }
