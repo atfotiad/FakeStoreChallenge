@@ -1,7 +1,7 @@
 package com.atfotiad.fakestorechallenge.utils.repository
 
 import android.content.Context
-import androidx.appcompat.app.AlertDialog
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import retrofit2.Response
 
 object RepoUtils {
@@ -23,19 +23,32 @@ object RepoUtils {
                 Result.Error(Exception("Response body is null"))
             }
         } else {
-            Result.Error(Exception("Network request failed with code: ${code()}"))
+            Result.Error(
+                Exception(
+                    "Network request failed with code: ${code()} and message: ${(errorBody()!!.string())}"
+                )
+            )
         }
     }
 
+    // Extension function to get the data or show an error dialog
+    // works with suspend functions in imperative way. Not with reactive.
     fun <T : Any> Result<T>.getOrError(context: Context): T? {
         return when (this) {
             is Result.Success -> data
             is Result.Error -> {
-                AlertDialog.Builder(context)
-                    .setTitle("Error")
-                    .setMessage(exception.message ?: "An unknown error occurred")
-                    .setPositiveButton("OK") { dialog, _ -> dialog.dismiss() }
-                    .show()
+                try {
+                    MaterialAlertDialogBuilder(context)
+                        .setTitle("Api Service Error")
+                        .setMessage(exception.message ?: "An unknown error occurred")
+                        .setPositiveButton("OK") { dialog, _ -> dialog.dismiss() }
+                        .create().apply {
+                            setCanceledOnTouchOutside(false)
+                            show()
+                        }
+                }catch (e:Exception){
+                    e.printStackTrace()
+                }
                 null
             }
         }
