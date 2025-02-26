@@ -28,18 +28,17 @@ object SecurityModule {
 
     @Provides
     @Singleton
-    fun provideCryptoManager(@ApplicationContext context: Context): CryptoManager {
-        return CryptoManager(context)
+    fun provideCryptoManager(): CryptoManager {
+        return CryptoManager()
     }
 
     @Provides
     @Singleton
     fun provideTokenManager(
-        @ApplicationContext context: Context,
         dataStore: DataStore<Preferences>,
         cryptoManager: CryptoManager
     ): TokenManager {
-        return TokenManager(context, dataStore, cryptoManager)
+        return TokenManager(dataStore, cryptoManager)
     }
 
     @Provides
