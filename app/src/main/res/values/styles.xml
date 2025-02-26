@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+        <style name="ShapeAppearanceOverlay.App.CircleImageView" parent="">
+            <item name="cornerFamily">rounded</item>
+            <item name="cornerSize">50%</item>
+        </style>
+
+
+    <style name="Buttons" parent="Widget.Material3.Button">
+        <item name="backgroundTint">@color/my_button_color</item>
+        <item name="cornerRadius">10dp</item>
+    </style>/
+
+    <style name="MyWhiteToolbarStyle" parent="Widget.Material3.Toolbar">
+        <item name="android:background">@color/white</item>
+    </style>
+
+    <style name="MyCustomCircularProgressIndicator" parent="Widget.Material3.CircularProgressIndicator">
+        <item name="indicatorColor">@color/my_button_color</item>
+        <item name="trackColor">@color/light_gray</item>
+        <item name="trackThickness">8dp</item>
+    </style>
+    <style name="MyCustomTextStyle" parent="TextAppearance.Material3.BodyLarge">
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+</resources>
