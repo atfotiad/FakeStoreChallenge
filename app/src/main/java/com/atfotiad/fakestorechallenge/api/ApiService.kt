@@ -20,9 +20,6 @@ interface ApiService {
     @GET("/products")
     suspend fun getAllProducts(): Response<List<Product>>
 
-    @GET("/products/category/{category}")
-    suspend fun getProductsByCategory(@Path("category") category: String): Response<List<Product>>
-
     @POST("/auth/login")
     suspend fun login(@Body loginRequest: LoginRequest): Response<LoginResponse>
 

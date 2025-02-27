@@ -39,15 +39,6 @@ class FakeStoreRepository @Inject constructor(
         return suspend { apiService.getCategories() }.toResult()
     }
 
-    //not in use
-    /** [getProductsByCategory] is a suspend function that returns a list of products by category.
-     * @param category is the category of the products.
-     * @return a [Result] object that holds a list of [Product] or an [Exception].
-     * */
-    suspend fun getProductsByCategory(category: String): Result<List<Product>> {
-        return suspend { apiService.getProductsByCategory(category) }.toResult()
-    }
-
     /**
      *  [updateProduct] is a suspend function that updates a product.
      *  return a [Result] object that holds a [Unit] or an [Exception].
