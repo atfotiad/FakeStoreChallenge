@@ -56,6 +56,8 @@ object RepoUtils {
                 }
                 null
             }
+
+            Result.Loading -> null
         }
     }
 }
