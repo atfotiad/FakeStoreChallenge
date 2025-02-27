@@ -1,11 +1,13 @@
 package com.atfotiad.fakestorechallenge.ui.login
 
+import android.util.Log
 import android.util.Patterns
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
 import com.atfotiad.fakestorechallenge.data.model.LoginRequest
+import com.atfotiad.fakestorechallenge.data.model.LoginResponse
 import com.atfotiad.fakestorechallenge.security.TokenManager
 import com.atfotiad.fakestorechallenge.usecase.FakeStoreUseCase
 import com.atfotiad.fakestorechallenge.utils.repository.Result
@@ -87,7 +89,9 @@ class LoginViewModel @Inject constructor(
                         username = username,
                         password = password,
                         isUsernameValid = isUsernameValid,
-                        isPasswordValid = isPasswordValid
+                        isPasswordValid = isPasswordValid,
+                        isLoading = false,
+                        result = Result.Loading
                     )
                 }
                 isUsernameValid && isPasswordValid
@@ -102,12 +106,16 @@ class LoginViewModel @Inject constructor(
      * */
     fun login() {
         viewModelScope.launch {
-            _uiState.update { it.copy(isLoading = true) }
-            val result = useCase.login(LoginRequest(username.value, password.value))
+            _uiState.update { it.copy(isLoading = true, result = Result.Loading) }
+            //if(uiState.value.isLoading){
+            val result: Result<LoginResponse> = useCase.login(LoginRequest(username.value, password.value))
+            Log.d("UiState: ", "${uiState.value}")
             if (result is Result.Success) {
                 tokenManager.saveToken(result.data.token)
             }
             _uiState.update { it.copy(isLoading = false, result = result) }
+            Log.d("UiState: ", "${uiState.value}")
+            //}
         }
     }
 }

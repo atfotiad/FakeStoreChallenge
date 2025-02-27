@@ -12,6 +12,7 @@ import androidx.navigation.fragment.findNavController
 import com.atfotiad.fakestorechallenge.R
 import com.atfotiad.fakestorechallenge.databinding.FragmentLoginBinding
 import com.atfotiad.fakestorechallenge.utils.repository.RepoUtils.getOrError
+import com.atfotiad.fakestorechallenge.utils.repository.Result
 import com.atfotiad.fakestorechallenge.utils.ui.viewDataBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -42,13 +43,15 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.uiState.collect { uiState ->
-                    if (uiState.result.getOrError(requireContext()) != null) {
-                        //navigate to next screen
-                        val navOptions = NavOptions.Builder()
-                            .setPopUpTo(R.id.loginFragment, true)
-                            .build()
-                        findNavController().navigate(R.id.homeFragment, null, navOptions)
+                    if (!uiState.isLoading && uiState.result != Result.Loading ) {
+                        if (uiState.result.getOrError(requireContext()) != null) {
+                            //navigate to next screen
+                            val navOptions = NavOptions.Builder()
+                                .setPopUpTo(R.id.loginFragment, true)
+                                .build()
+                            findNavController().navigate(R.id.homeFragment, null, navOptions)
 
+                       }
                     }
                 }
             }
