@@ -102,31 +102,12 @@ class LoginViewModel @Inject constructor(
      * */
     fun login() {
         viewModelScope.launch {
-            _uiState.update { it.copy(isLoading = true, isSuccess = false, errorMessage = null) }
-            when (val result = useCase.login(LoginRequest(username.value, password.value))) {
-                is Result.Success -> {
-                    tokenManager.saveToken(result.data.token)
-                    _uiState.update { it.copy(isLoading = false, isSuccess = true) }
-                }
-
-                is Result.Error -> {
-                    _uiState.update {
-                        it.copy(
-                            isLoading = false,
-                            errorMessage = result.exception.localizedMessage
-                        )
-                    }
-                }
-
+            _uiState.update { it.copy(isLoading = true) }
+            val result = useCase.login(LoginRequest(username.value, password.value))
+            if (result is Result.Success) {
+                tokenManager.saveToken(result.data.token)
             }
+            _uiState.update { it.copy(isLoading = false, result = result) }
         }
     }
-
-    /**
-     *  [clearErrorMessage] is a function that clears the error message.
-     * */
-    fun clearErrorMessage() {
-        _uiState.update { it.copy(errorMessage = null) }
-    }
-
 }
