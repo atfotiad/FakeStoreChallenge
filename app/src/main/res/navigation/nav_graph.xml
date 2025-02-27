@@ -42,11 +42,17 @@
         <argument
             android:name="product"
             app:argType="com.atfotiad.fakestorechallenge.data.model.product.Product" />
+        <action
+        android:id="@+id/action_productEditFragment_to_productDetailsFragment"
+        app:destination="@id/productDetailsFragment"
+        app:popUpTo="@id/productEditFragment"
+        app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/mainFragment"
         android:name="com.atfotiad.fakestorechallenge.ui.main.MainFragment"
         android:label="MainFragment"
         tools:layout="@layout/fragment_main" />
+
 
 </navigation>
