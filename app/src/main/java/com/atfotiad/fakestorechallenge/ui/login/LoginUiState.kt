@@ -1,4 +1,7 @@
 package com.atfotiad.fakestorechallenge.ui.login
+
+import com.atfotiad.fakestorechallenge.utils.repository.Result
+
 /**
  *  [LoginUiState] is a data class that contains the UI state for the login screen.
  *  @property username is a String that contains the username.
@@ -6,8 +9,6 @@ package com.atfotiad.fakestorechallenge.ui.login
  *  @property isUsernameValid is a Boolean that indicates if the username is valid.
  *  @property isPasswordValid is a Boolean that indicates if the password is valid.
  *  @property isLoading is a Boolean that indicates if the login is loading.
- *  @property isSuccess is a Boolean that indicates if the login is successful.
- *  @property errorMessage is a String that contains the error message.
  * */
 data class LoginUiState(
     val username: String = "",
@@ -15,6 +16,5 @@ data class LoginUiState(
     val isUsernameValid: Boolean = false,
     val isPasswordValid: Boolean = false,
     val isLoading: Boolean = false,
-    val isSuccess: Boolean = false,
-    val errorMessage: String? = null
+    val result: Result<*> = Result.Loading
 )
