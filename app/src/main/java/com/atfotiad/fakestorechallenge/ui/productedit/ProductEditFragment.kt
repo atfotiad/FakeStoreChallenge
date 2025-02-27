@@ -9,6 +9,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.atfotiad.fakestorechallenge.data.model.product.Product
 import com.atfotiad.fakestorechallenge.databinding.FragmentProductEditBinding
@@ -49,6 +50,11 @@ class ProductEditFragment : Fragment() {
         binding.saveButton.setOnClickListener {
             val updatedProduct = getUpdatedProduct(product)
             viewModel.updateProduct(updatedProduct)
+            val action =
+                ProductEditFragmentDirections.actionProductEditFragmentToProductDetailsFragment(
+                    product = updatedProduct
+                )
+            findNavController().navigate(action)
         }
     }
 
@@ -66,7 +72,7 @@ class ProductEditFragment : Fragment() {
         viewLifecycleOwner.lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.uiState.collect { uiState ->
-                    // Handle UI state changes here
+                    uiState.product?.let { bindProduct(it) }
                 }
             }
         }

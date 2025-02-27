@@ -15,8 +15,10 @@ import androidx.navigation.fragment.navArgs
 import com.atfotiad.fakestorechallenge.data.model.product.Product
 import com.atfotiad.fakestorechallenge.databinding.FragmentProductDetailsBinding
 import com.bumptech.glide.Glide
+import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
+import java.text.NumberFormat
 
 /**
  *  [ProductDetailsFragment] is a Fragment that displays the details of a product.
@@ -75,8 +77,9 @@ class ProductDetailsFragment : Fragment() {
     private fun bindProduct(product: Product) {
         binding.apply {
             productTitle.text = product.title
-            productPrice.text = product.price.toString()
+            productPrice.text = NumberFormat.getCurrencyInstance().format(product.price)
             productDescription.text = product.description
+            productCategory.text = product.category
             Glide.with(binding.root).load(product.imageUrl).into(productImage)
         }
     }
