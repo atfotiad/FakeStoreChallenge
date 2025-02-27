@@ -16,6 +16,12 @@ import com.atfotiad.fakestorechallenge.databinding.ActivityMainBinding
 import com.atfotiad.fakestorechallenge.utils.ui.viewDataBinding
 import dagger.hilt.android.AndroidEntryPoint
 
+/**
+ *  [MainActivity] is a FragmentActivity that contains the main navigation graph.
+ *  @property binding is a ActivityMainBinding object that contains the binding for the view.
+ *  @property navController is a NavController object that contains the navigation controller.
+ *  @property viewModel is a MainViewModel object that contains the shared ViewModel.
+ * */
 @AndroidEntryPoint
 class MainActivity : FragmentActivity() {
     private val binding: ActivityMainBinding by viewDataBinding()
@@ -38,6 +44,10 @@ class MainActivity : FragmentActivity() {
         }
     }
 
+    /**
+     *  [setupToolbar] is a function that sets up the toolbar.
+     *  handles the toolbar behavior for each destination.
+     * */
     private fun setupToolbar() {
         val appBarConfiguration = AppBarConfiguration(navController.graph)
         binding.toolbarLayout.toolbar.setupWithNavController(navController, appBarConfiguration)

@@ -13,7 +13,15 @@ import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import javax.inject.Singleton
-
+/**
+ *  [NetworkModule] is a Dagger-hilt module that provides dependencies for the network layer.
+ *  @property provideMoshi is a Dagger-hilt provider function that provides an instance of [Moshi].
+ *  @property provideRetrofit is a Dagger-hilt provider function that provides an instance of [Retrofit].
+ *  @property provideApiService is a Dagger-hilt provider function that provides an instance of [ApiService].
+ *  @property provideOkHttpClient is a Dagger-hilt provider function that provides an instance of [OkHttpClient].
+ *  @property provideHttpLoggingInterceptor is a Dagger-hilt provider function that provides an instance of [HttpLoggingInterceptor].
+ *  @property ApiService is an interface that defines the API endpoints.[ApiService]
+ * */
 @Module
 @InstallIn(SingletonComponent::class)
 object NetworkModule {

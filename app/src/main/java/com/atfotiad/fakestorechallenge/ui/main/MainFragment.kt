@@ -15,9 +15,10 @@ import com.atfotiad.fakestorechallenge.R
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
-/** An empty fragment responsible for
- * checking the token state and navigating to
- * [@LoginFragment] or [@HomeFragment]
+/**
+ *  [MainFragment] is an empty Fragment that is responsible
+ *  for handling the navigation based on the user's login status.
+ *  @property viewModel is a MainViewModel object that contains the shared ViewModel.
  * */
 @AndroidEntryPoint
 class MainFragment : Fragment() {

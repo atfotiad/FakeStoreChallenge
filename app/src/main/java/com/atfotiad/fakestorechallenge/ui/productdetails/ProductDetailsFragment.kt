@@ -18,6 +18,12 @@ import com.bumptech.glide.Glide
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
+/**
+ *  [ProductDetailsFragment] is a Fragment that displays the details of a product.
+ *  @property binding is a FragmentProductDetailsBinding object that contains the binding for the view.
+ *  @property viewModel is a ProductDetailsViewModel object that contains the ViewModel.
+ *  @property args is a ProductDetailsFragmentArgs object that contains the arguments for the fragment.
+ * */
 @AndroidEntryPoint
 class ProductDetailsFragment : Fragment() {
 
@@ -41,6 +47,10 @@ class ProductDetailsFragment : Fragment() {
         viewModel.setProduct(product)
     }
 
+    /**
+     *  [observeUiState] is a function that observes the UI state.
+     *  binds the product to the views.
+     * */
     private fun observeUiState() {
         viewLifecycleOwner.lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {

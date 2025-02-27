@@ -16,6 +16,11 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
+/**
+ *  [LoginFragment] is a Fragment that displays a login screen.
+ *  @property viewModel is a LoginViewModel object that contains the ViewModel.
+ *  @property binding is a FragmentLoginBinding object that contains the binding for the view.
+ * */
 @AndroidEntryPoint
 class LoginFragment : Fragment(R.layout.fragment_login) {
     private val viewModel: LoginViewModel by viewModels()
@@ -28,6 +33,11 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
         observeUiState()
     }
 
+    /**
+     *  [observeUiState] is a function that observes the UI state.
+     *  and navigates to the next screen if the login is successful.
+     *  or shows error message if the login fails.
+     * */
     private fun observeUiState() {
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {

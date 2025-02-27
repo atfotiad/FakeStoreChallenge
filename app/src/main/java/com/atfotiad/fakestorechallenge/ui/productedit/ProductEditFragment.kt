@@ -16,6 +16,15 @@ import com.bumptech.glide.Glide
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
+/**
+ *  [ProductEditFragment] is a Fragment that allows the user to edit a product.
+ *  @property binding is a FragmentProductEditBinding object that contains the binding for the view.
+ *  @property viewModel is a ProductEditViewModel object that contains the ViewModel.
+ *  @property args is a ProductEditFragmentArgs object that contains the arguments for the fragment.
+ *  @property bindProduct is a function that binds the product to the views.
+ *  @property observeUiState is a function that observes the UI state.
+ *  @property getUpdatedProduct is a function that returns the updated product.
+ * */
 @AndroidEntryPoint
 class ProductEditFragment : Fragment() {
 

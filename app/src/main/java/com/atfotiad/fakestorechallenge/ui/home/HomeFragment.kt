@@ -15,7 +15,15 @@ import com.atfotiad.fakestorechallenge.data.model.product.HomeUiState
 import com.atfotiad.fakestorechallenge.databinding.FragmentHomeBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
-
+/**
+ *  [HomeFragment] is a Fragment that displays a list of categories and products.
+ *  @property viewModel is a HomeViewModel object that contains the ViewModel.
+ *  @property categoryAdapter is a CategoryAdapter object that contains the adapter for the categories RecyclerView.
+ *  @property productAdapter is a ProductAdapter object that contains the adapter for the products RecyclerView.
+ *  @property productLayoutManager is a LinearLayoutManager object that contains the layout manager for the products RecyclerView.
+ *  @property _binding is a FragmentHomeBinding object that contains the binding for the view.
+ *  @property binding is an immutable version of the _binding property.
+ * */
 @AndroidEntryPoint
 class HomeFragment : Fragment() {
 
@@ -41,6 +49,9 @@ class HomeFragment : Fragment() {
         observeUiState()
     }
 
+    /**
+     *  [setupRecyclerViews] is a function that sets up the recycler views.
+     * */
     private fun setupRecyclerViews() {
         categoryAdapter = CategoryAdapter { category ->
             viewModel.selectCategory(category)
@@ -66,6 +77,10 @@ class HomeFragment : Fragment() {
         }
     }
 
+    /**
+     *  [observeUiState] is a function that observes the UI state.
+     *
+     * */
     private fun observeUiState() {
         viewLifecycleOwner.lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {

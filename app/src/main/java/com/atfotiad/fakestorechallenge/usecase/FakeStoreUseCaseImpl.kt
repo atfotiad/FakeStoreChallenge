@@ -8,6 +8,9 @@ import com.atfotiad.fakestorechallenge.utils.repository.Result
 import javax.inject.Inject
 import javax.inject.Singleton
 
+/**
+ *  [FakeStoreUseCaseImpl] is an implementation of the [FakeStoreUseCase] interface.
+ * */
 @Singleton
 class FakeStoreUseCaseImpl @Inject constructor(
     private val repository: FakeStoreRepository

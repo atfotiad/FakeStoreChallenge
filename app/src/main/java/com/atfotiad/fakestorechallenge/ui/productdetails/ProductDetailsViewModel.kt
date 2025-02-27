@@ -9,6 +9,12 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import javax.inject.Inject
 
+/**
+ *  [ProductDetailsViewModel] is a ViewModel that handles the product details screen.
+ *  @property _uiState is a MutableStateFlow object that contains the UI state.
+ *  @property uiState is a StateFlow object that contains the UI state.
+ *  @property setProduct is a function that sets the product.
+ * */
 @HiltViewModel
 class ProductDetailsViewModel @Inject constructor(
 ) : ViewModel() {

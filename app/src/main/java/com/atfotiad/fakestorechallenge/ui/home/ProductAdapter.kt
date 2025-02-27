@@ -13,6 +13,9 @@ import com.bumptech.glide.Glide
 import java.text.NumberFormat
 import java.util.Locale
 
+/**
+ *  [ProductAdapter] is a RecyclerView adapter that displays a list of products.
+ * */
 class ProductAdapter :
     ListAdapter<Product, ProductAdapter.ProductViewHolder>(ProductDiffCallback()) {
 

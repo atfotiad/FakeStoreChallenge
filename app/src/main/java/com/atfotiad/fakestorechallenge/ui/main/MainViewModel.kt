@@ -11,6 +11,12 @@ import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
+/**
+ *  [MainViewModel] is a ViewModel that handles the main screen.
+ *  @param tokenManager is a TokenManager object that contains the token manager.
+ *  @property _isLoggedIn is a MutableSharedFlow object that contains the login state.
+ *  @property isLoggedIn is a SharedFlow object that contains the login state.
+ * */
 @HiltViewModel
 class MainViewModel @Inject constructor(
     private val tokenManager: TokenManager
@@ -24,6 +30,9 @@ class MainViewModel @Inject constructor(
         checkToken()
     }
 
+    /**
+     *  [checkToken] is a function that checks the token.
+     * */
     private fun checkToken() {
         viewModelScope.launch {
             Log.d("MainViewModel", "checkToken: Checking for token")
@@ -37,6 +46,10 @@ class MainViewModel @Inject constructor(
         }
     }
 
+    /**
+     *  [logout] is a function that handles the logout.
+     *  Currently it only deletes the token.
+     * */
     fun logout() {
         viewModelScope.launch {
             Log.d("MainViewModel", "logout: Logging out")

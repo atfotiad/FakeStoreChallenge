@@ -16,7 +16,11 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import javax.inject.Inject
-
+/**
+ *  [HomeViewModel] is a ViewModel that loads the home data.
+ *  @param useCase is a FakeStoreUseCase object that contains the use case.
+ *  @param context is a Context object that contains the application context.
+ * */
 @HiltViewModel
 class HomeViewModel @Inject constructor(
     private val useCase: FakeStoreUseCase,
@@ -31,6 +35,9 @@ class HomeViewModel @Inject constructor(
         loadHomeData()
     }
 
+    /**
+     *  [loadHomeData] is a function that loads the home data Based on [HomeUiState]
+     * */
     private fun loadHomeData() {
         viewModelScope.launch {
             _uiState.update { HomeUiState.Loading }
@@ -51,6 +58,10 @@ class HomeViewModel @Inject constructor(
         }
     }
 
+    /**
+     *  [selectCategory] is a function that selects a category.
+     *  Updates the UI state with the selected category.
+     * */
     fun selectCategory(category: String) {
         viewModelScope.launch {
             val currentData = (_uiState.value as? HomeUiState.Success)?.data
@@ -81,6 +92,10 @@ class HomeViewModel @Inject constructor(
         }
     }
 
+    /**
+     *  [clearCategorySelection] is a function that clears the category selection.
+     *  currently not in use because category selection is handled in [selectCategory]
+     * */
     fun clearCategorySelection() {
         viewModelScope.launch {
             val currentData = (_uiState.value as? HomeUiState.Success)?.data

@@ -18,6 +18,17 @@ import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
+/**
+ *  [LoginViewModel] is a ViewModel that handles the login screen.
+ *  @param useCase is a FakeStoreUseCase object that contains the use case.
+ *  @param tokenManager is a TokenManager object that contains the token manager.
+ *  @property _uiState is a MutableStateFlow object that contains the UI state.
+ *  @property uiState is a StateFlow object that contains the UI state.
+ *  @property username is a MutableStateFlow object that contains the username.
+ *  @property password is a MutableStateFlow object that contains the password.
+ *  @property _isLoginEnabled is a MutableStateFlow object that contains the login enabled state.
+ *  @property isLoginEnabled is a LiveData object that contains the login enabled state.
+ * */
 @HiltViewModel
 class LoginViewModel @Inject constructor(
     private val useCase: FakeStoreUseCase,
@@ -37,16 +48,30 @@ class LoginViewModel @Inject constructor(
         validateForm()
     }
 
+    /**
+     *  [onUsernameChanged] is a function that handles the username change.
+     *  calls [validateForm] to validate the form.
+     * */
     fun onUsernameChanged(newUsername: String) {
         username.value = newUsername
         validateForm()
     }
 
+    /**
+     *  [onPasswordChanged] is a function that handles the password change.
+     *  calls [validateForm] to validate the form.
+     * */
     fun onPasswordChanged(newPassword: String) {
         password.value = newPassword
         validateForm()
     }
 
+    /**
+     *  [validateForm] is a function that validates the form.
+     *  combines the username and password flows to validate the form.
+     *  updates the uiState with the new values.
+     *  enables the login button if the form is valid.
+     * */
     private fun validateForm() {
         viewModelScope.launch {
             combine(username, password) { username, password ->
@@ -72,6 +97,9 @@ class LoginViewModel @Inject constructor(
         }
     }
 
+    /**
+     *  [login] is a function that handles the login.
+     * */
     fun login() {
         viewModelScope.launch {
             _uiState.update { it.copy(isLoading = true, isSuccess = false, errorMessage = null) }
@@ -94,6 +122,9 @@ class LoginViewModel @Inject constructor(
         }
     }
 
+    /**
+     *  [clearErrorMessage] is a function that clears the error message.
+     * */
     fun clearErrorMessage() {
         _uiState.update { it.copy(errorMessage = null) }
     }

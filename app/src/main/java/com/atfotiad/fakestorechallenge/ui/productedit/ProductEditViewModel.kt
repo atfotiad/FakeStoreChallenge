@@ -14,6 +14,15 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
+/**
+ *  [ProductEditViewModel] is a ViewModel that handles the product edit screen.
+ *  @param useCase is a FakeStoreUseCase object that contains the use case.
+ *  @param context is a Context object that contains the application context.
+ *  @property _uiState is a MutableStateFlow object that contains the UI state.
+ *  @property uiState is a StateFlow object that contains the UI state.
+ *  @property updateProduct is a function that updates the product.
+ *  @property ProductEditUiState is a data class that contains the UI state for the product edit screen.
+ * */
 @HiltViewModel
 class ProductEditViewModel @Inject constructor(
     private val useCase: FakeStoreUseCase,

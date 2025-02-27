@@ -10,7 +10,11 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.atfotiad.fakestorechallenge.databinding.ItemCategoryBinding
 import com.bumptech.glide.Glide
-
+/**
+ * [CategoryAdapter] is a RecyclerView adapter that displays a list of categories.
+ * @param onCategoryClick is a lambda function that is called when a category is clicked.
+ * @property selectedCategory is a String object that contains the selected category.
+ * */
 class CategoryAdapter(
     private val onCategoryClick: (String) -> Unit
 ) : ListAdapter<String, CategoryAdapter.CategoryViewHolder>(CategoryDiffCallback()) {
@@ -22,20 +26,38 @@ class CategoryAdapter(
             notifyDataSetChanged()
         }
 
+    /**
+     * [onCreateViewHolder] is a function that creates a new ViewHolder.
+     * @param parent is a ViewGroup object that contains the parent view.
+     * @param viewType is an Int object that contains the view type.
+     * @param binding is a ItemCategoryBinding object that contains the binding for the view.
+     * */
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CategoryViewHolder {
         val binding =
             ItemCategoryBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return CategoryViewHolder(binding)
     }
 
+    /**
+     *  [onBindViewHolder] is a function that binds the ViewHolder.
+     *  @param holder is a CategoryViewHolder object that contains the ViewHolder.
+     *  @param position is an Int object that contains the position of the item.
+     * */
     override fun onBindViewHolder(holder: CategoryViewHolder, position: Int) {
         val category = getItem(position)
         holder.bind(category)
     }
 
+    /**
+     *  [CategoryViewHolder] is a RecyclerView ViewHolder that displays a category.
+     *  @param binding is a ItemCategoryBinding object that contains the binding for the view.
+     * */
     inner class CategoryViewHolder(private val binding: ItemCategoryBinding) :
         RecyclerView.ViewHolder(binding.root) {
-
+            /**
+             *  [bind] is a function that binds the ViewHolder.
+             *  @param category is a String object that contains the category.
+             * */
         fun bind(category: String) {
             binding.categoryName.text = category
             Glide.with(binding.categoryImage.context)
@@ -58,6 +80,9 @@ class CategoryAdapter(
         }
     }
 
+    /**
+     *  [CategoryDiffCallback] is a DiffUtil.ItemCallback that compares two categories.
+     * */
     class CategoryDiffCallback : DiffUtil.ItemCallback<String>() {
         override fun areItemsTheSame(oldItem: String, newItem: String): Boolean {
             return oldItem == newItem
@@ -68,6 +93,11 @@ class CategoryAdapter(
         }
     }
 
+    /**
+     *  [getImageUrlForCategory] is a function that returns the image URL for a given category.
+     *  @param category is a String object that contains the category.
+     *  @return a String object that contains the image URL.
+     * */
     private fun getImageUrlForCategory(category: String): String {
         // Some Default images for each category
         return when (category) {

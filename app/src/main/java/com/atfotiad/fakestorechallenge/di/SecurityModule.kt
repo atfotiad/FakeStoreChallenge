@@ -22,6 +22,12 @@ private val Context.dataStore:
     name = "token_data_store"
 )
 
+/**
+ *  [SecurityModule] is a Dagger-hilt module that provides dependencies for the security layer.
+ *  @property provideCryptoManager is a Dagger-hilt provider function that provides an instance of [CryptoManager].
+ *  @property provideTokenManager is a Dagger-hilt provider function that provides an instance of [TokenManager].
+ *  @property provideDataStore is a Dagger-hilt provider function that provides an instance of [DataStore].
+ * */
 @Module
 @InstallIn(SingletonComponent::class)
 object SecurityModule {

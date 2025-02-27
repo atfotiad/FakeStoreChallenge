@@ -8,6 +8,10 @@ import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import javax.inject.Singleton
 
+/**
+ *  [DataModule] is a Dagger-hilt module that provides dependencies for the data layer.
+ *  @property provideRepository is a Dagger-hilt provider function that provides an instance of [FakeStoreRepository].
+ * */
 @Module
 @InstallIn(SingletonComponent::class)
 object DataModule {

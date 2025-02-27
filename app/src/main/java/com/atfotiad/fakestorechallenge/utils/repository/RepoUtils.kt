@@ -4,6 +4,11 @@ import android.content.Context
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import retrofit2.Response
 
+/**
+ *  [RepoUtils] is a object that contains the utils for the repository.
+ *  @property toResult is an extension function that converts the response to a result.
+ *  @property getOrError is an extension function that gets the data or shows an error dialog.
+ * */
 object RepoUtils {
     suspend fun <T : Any> (suspend () -> Response<T>).toResult(): Result<T> {
         return try {

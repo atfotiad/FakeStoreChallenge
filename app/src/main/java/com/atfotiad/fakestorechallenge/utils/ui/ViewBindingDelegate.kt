@@ -13,14 +13,28 @@ import androidx.viewbinding.ViewBinding
 import kotlin.properties.ReadOnlyProperty
 import kotlin.reflect.KProperty
 
+/**
+ *  ViewBinding delegate classes for fragments and activities.
+ *  @param T is the type of the ViewBinding class.
+ *  @return ViewBinding delegate class.
+ * */
 inline fun <reified T : ViewBinding> FragmentActivity.viewDataBinding() =
     ActivityViewBindingDelegate(T::class.java, this)
 
+/**
+ *  ViewBinding delegate extension fun for fragments.
+ *  @param T is the type of the ViewBinding class.
+ *  @return ViewBinding delegate class.
+ * */
 inline fun <reified T : ViewDataBinding> Fragment.viewDataBinding(
     noinline viewDataBindingFactory: (View) -> T
 ) =
     FragmentViewDataBindingDelegate(this, viewDataBindingFactory)
 
+/**
+ *  ViewBinding delegate class for activities.
+ *  @property [getValue] is a function that returns the binding.
+ * */
 class ActivityViewBindingDelegate<T : ViewBinding>(
     private val bindingClass: Class<T>,
     private val activity: FragmentActivity,
@@ -28,6 +42,10 @@ class ActivityViewBindingDelegate<T : ViewBinding>(
 
     private var binding: T? = null
 
+    /**
+     *  [getValue] is a function that returns the binding.
+     *  Uses reflection to work with any type of ViewBinding.
+     * */
     override fun getValue(thisRef: FragmentActivity, property: KProperty<*>): T {
         binding?.let { return it }
 
@@ -39,6 +57,13 @@ class ActivityViewBindingDelegate<T : ViewBinding>(
     }
 }
 
+/**
+ *  ViewBinding delegate class for fragments.
+ *  @param T is the type of the ViewBinding class.
+ *  @param fragment is the fragment that uses the binding.
+ *  @param viewDataBindingFactory is a function that returns the binding for a [View]
+ *  @property [getValue] is a function that returns the binding.
+ * */
 class FragmentViewDataBindingDelegate<T : ViewBinding>(
     val fragment: Fragment,
     val viewDataBindingFactory: (View) -> T
@@ -71,6 +96,9 @@ class FragmentViewDataBindingDelegate<T : ViewBinding>(
         })
     }
 
+    /**
+     *  [getValue] is a function that returns the binding.
+     * */
     override fun getValue(thisRef: Fragment, property: KProperty<*>): T {
         binding?.let { return it }
         val lifecycle = fragment.viewLifecycleOwner.lifecycle
