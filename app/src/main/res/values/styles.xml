@@ -17,12 +17,23 @@
 
     <style name="MyCustomCircularProgressIndicator" parent="Widget.Material3.CircularProgressIndicator">
         <item name="indicatorColor">@color/my_button_color</item>
-        <item name="trackColor">@color/light_gray</item>
         <item name="trackThickness">8dp</item>
     </style>
     <style name="MyCustomTextStyle" parent="TextAppearance.Material3.BodyLarge">
         <item name="android:textColor">@color/white</item>
         <item name="android:textSize">20sp</item>
         <item name="android:textStyle">bold</item>
+    </style>
+
+
+    <style name="MyButtonStyle" parent="Widget.Material3.Button">
+        <item name="android:background">@drawable/my_button_background</item>
+        <item name="backgroundTint">@null</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="cornerRadius">10dp</item>
+        <item name="android:paddingTop">10dp</item>
+        <item name="android:paddingBottom">10dp</item>
+        <item name="android:paddingLeft">20dp</item>
+        <item name="android:paddingRight">20dp</item>
     </style>
 </resources>
