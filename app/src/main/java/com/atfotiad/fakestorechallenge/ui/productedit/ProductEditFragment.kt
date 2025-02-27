@@ -16,6 +16,7 @@ import com.atfotiad.fakestorechallenge.databinding.FragmentProductEditBinding
 import com.bumptech.glide.Glide
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
+import java.util.Locale
 
 /**
  *  [ProductEditFragment] is a Fragment that allows the user to edit a product.
@@ -61,7 +62,7 @@ class ProductEditFragment : Fragment() {
     private fun bindProduct(product: Product) {
         binding.apply {
             productTitle.setText(product.title)
-            productPrice.setText(product.price.toString())
+            productPrice.setText(String.format(Locale.getDefault(), product.price.toString()))
             productDescription.setText(product.description)
             productCategory.setText(product.category)
             Glide.with(binding.root).load(product.imageUrl).into(productImage)
