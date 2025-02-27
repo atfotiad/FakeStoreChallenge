@@ -10,12 +10,10 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
-import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.atfotiad.fakestorechallenge.data.model.product.Product
 import com.atfotiad.fakestorechallenge.databinding.FragmentProductDetailsBinding
 import com.bumptech.glide.Glide
-import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import java.text.NumberFormat
@@ -63,14 +61,6 @@ class ProductDetailsFragment : Fragment() {
                 }
             }
         }
-    }
-
-    private fun navigateToEditProduct(product: Product) {
-        val action =
-            ProductDetailsFragmentDirections.actionProductDetailsFragmentToProductEditFragment(
-                product
-            )
-        findNavController().navigate(action)
     }
 
     @SuppressLint("SetTextI18n")
