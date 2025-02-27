@@ -1,6 +1,8 @@
 package com.atfotiad.fakestorechallenge.utils.repository
 
 import android.content.Context
+import com.atfotiad.fakestorechallenge.utils.repository.RepoUtils.getOrError
+import com.atfotiad.fakestorechallenge.utils.repository.RepoUtils.toResult
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import retrofit2.Response
 
@@ -37,7 +39,6 @@ object RepoUtils {
     }
 
     // Extension function to get the data or show an error dialog
-    // works with suspend functions in imperative way. Not with reactive.
     fun <T : Any> Result<T>.getOrError(context: Context): T? {
         return when (this) {
             is Result.Success -> data
@@ -51,13 +52,12 @@ object RepoUtils {
                             setCanceledOnTouchOutside(false)
                             show()
                         }
-                }catch (e:Exception){
+                } catch (e: Exception) {
                     e.printStackTrace()
                 }
                 null
             }
-
-            Result.Loading -> null
+            is Result.Loading -> null
         }
     }
 }
