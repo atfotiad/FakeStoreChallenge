@@ -11,8 +11,8 @@ import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
 import com.atfotiad.fakestorechallenge.R
 import com.atfotiad.fakestorechallenge.databinding.FragmentLoginBinding
+import com.atfotiad.fakestorechallenge.utils.repository.RepoUtils.getOrError
 import com.atfotiad.fakestorechallenge.utils.ui.viewDataBinding
-import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -42,22 +42,13 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.uiState.collect { uiState ->
-                    if (uiState.isSuccess) {
-                        // Navigate to the next screen
+                    if (uiState.result.getOrError(requireContext()) != null) {
+                        //navigate to next screen
                         val navOptions = NavOptions.Builder()
                             .setPopUpTo(R.id.loginFragment, true)
                             .build()
                         findNavController().navigate(R.id.homeFragment, null, navOptions)
-                    }
-                    if (uiState.errorMessage != null) {
-                        MaterialAlertDialogBuilder(requireContext())
-                            .setTitle("Login Error")
-                            .setMessage(uiState.errorMessage)
-                            .setPositiveButton("OK") { dialog, _ ->
-                                dialog.dismiss()
-                                viewModel.clearErrorMessage()
-                            }.create().apply { setCanceledOnTouchOutside(false) }
-                            .show()
+
                     }
                 }
             }
