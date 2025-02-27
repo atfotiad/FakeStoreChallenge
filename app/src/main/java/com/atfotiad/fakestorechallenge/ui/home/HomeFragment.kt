@@ -9,12 +9,12 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
-import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.atfotiad.fakestorechallenge.data.model.product.HomeUiState
 import com.atfotiad.fakestorechallenge.databinding.FragmentHomeBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
+
 /**
  *  [HomeFragment] is a Fragment that displays a list of categories and products.
  *  @property viewModel is a HomeViewModel object that contains the ViewModel.
@@ -66,10 +66,9 @@ class HomeFragment : Fragment() {
 
         productAdapter = ProductAdapter()
         binding.productsRecyclerView.apply {
-            productLayoutManager = GridLayoutManager(
+            productLayoutManager = LinearLayoutManager(
                 context,
-                2,
-                GridLayoutManager.HORIZONTAL,
+                LinearLayoutManager.HORIZONTAL,
                 false
             )
             layoutManager = productLayoutManager
