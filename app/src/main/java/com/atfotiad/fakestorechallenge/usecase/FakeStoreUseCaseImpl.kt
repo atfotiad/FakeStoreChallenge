@@ -19,10 +19,6 @@ class FakeStoreUseCaseImpl @Inject constructor(
         return repository.getCategories()
     }
 
-    override suspend fun getProductsByCategory(category: String): List<Product> {
-        TODO("Not yet implemented")
-    }
-
     override suspend fun login(loginRequest: LoginRequest): Result<LoginResponse> {
         return repository.login(loginRequest.username, loginRequest.password)
     }
