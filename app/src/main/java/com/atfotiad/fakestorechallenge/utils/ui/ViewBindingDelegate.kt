@@ -35,6 +35,7 @@ inline fun <reified T : ViewDataBinding> Fragment.viewDataBinding(
  *  ViewBinding delegate class for activities.
  *  @property [getValue] is a function that returns the binding.
  * */
+@Suppress("UNCHECKED_CAST")
 class ActivityViewBindingDelegate<T : ViewBinding>(
     private val bindingClass: Class<T>,
     private val activity: FragmentActivity,
