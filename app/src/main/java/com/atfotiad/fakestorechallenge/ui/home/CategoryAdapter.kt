@@ -30,7 +30,6 @@ class CategoryAdapter(
      * [onCreateViewHolder] is a function that creates a new ViewHolder.
      * @param parent is a ViewGroup object that contains the parent view.
      * @param viewType is an Int object that contains the view type.
-     * @param binding is a ItemCategoryBinding object that contains the binding for the view.
      * */
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CategoryViewHolder {
         val binding =
@@ -50,7 +49,7 @@ class CategoryAdapter(
 
     /**
      *  [CategoryViewHolder] is a RecyclerView ViewHolder that displays a category.
-     *  @param binding is a ItemCategoryBinding object that contains the binding for the view.
+     *  @param binding is an ItemCategoryBinding object that contains the binding for the view.
      * */
     inner class CategoryViewHolder(private val binding: ItemCategoryBinding) :
         RecyclerView.ViewHolder(binding.root) {
@@ -67,7 +66,7 @@ class CategoryAdapter(
 
             // Highlight the selected category
             if (category == selectedCategory) {
-                binding.root.setBackgroundColor(Color.LTGRAY)
+                binding.root.setBackgroundColor(Color.TRANSPARENT)
                 binding.categoryName.setTextColor(Color.BLACK)
             } else {
                 binding.root.setBackgroundColor(Color.TRANSPARENT)
