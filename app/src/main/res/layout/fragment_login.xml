@@ -24,7 +24,7 @@
             android:layout_height="wrap_content"
             android:text="@string/welcome_nback"
             android:textSize="36sp"
-            android:textStyle="bold"
+            android:fontFamily="@font/montserrat_bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -56,7 +56,9 @@
                 android:inputType="textEmailAddress"
                 android:paddingStart="8dp"
                 android:paddingEnd="8dp"
-                android:text="@={viewModel.username}" />
+                android:text="@={viewModel.username}"
+                android:fontFamily="@font/montserrat_medium"
+                android:textSize="12sp"/>
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -90,7 +92,9 @@
                 android:imeOptions="actionDone"
                 android:inputType="textPassword"
                 android:padding="8dp"
-                android:text="@={viewModel.password}" />
+                android:text="@={viewModel.password}"
+                android:fontFamily="@font/montserrat_medium"
+                android:textSize="12sp"/>
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.button.MaterialButton
@@ -106,6 +110,7 @@
             android:enabled="@{viewModel.isLoginEnabled}"
             android:onClick="@{() -> viewModel.login()}"
             android:text="@string/login"
+            android:fontFamily="@font/montserrat_semibold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
