@@ -11,4 +11,6 @@
     <string name="all_featured">All Featured</string>
     <string name="save">Save</string>
     <string name="category">Category</string>
+    <string name="product_title">Product Title</string>
+    <string name="product_details">Product Details</string>
 </resources>
