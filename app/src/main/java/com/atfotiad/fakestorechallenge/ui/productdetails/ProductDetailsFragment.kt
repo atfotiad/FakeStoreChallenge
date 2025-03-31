@@ -69,7 +69,6 @@ class ProductDetailsFragment : Fragment() {
             productTitle.text = product.title
             productPrice.text = NumberFormat.getCurrencyInstance().format(product.price)
             productDescription.text = product.description
-            productCategory.text = product.category
             Glide.with(binding.root).load(product.imageUrl).into(productImage)
         }
     }

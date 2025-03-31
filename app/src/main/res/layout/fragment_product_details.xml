@@ -24,9 +24,9 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
-        android:text="Product Title"
-        android:textSize="24sp"
-        android:textStyle="bold"
+        android:fontFamily="@font/montserrat_bold"
+        android:text="@string/product_title"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/productImage" />
@@ -36,31 +36,39 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:text="Product Price"
-        android:textSize="18sp"
+        android:fontFamily="@font/montserrat_medium"
+        android:text="@string/product_price"
+        android:textColor="@color/black"
+        android:textSize="14sp"
         app:layout_constraintStart_toStartOf="@+id/productTitle"
         app:layout_constraintTop_toBottomOf="@+id/productTitle" />
 
+
     <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/productCategory"
+        android:id="@+id/productDetails"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:text="Product Category"
-        android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="@+id/productTitle"
-        app:layout_constraintTop_toBottomOf="@+id/productTitle" />
+        android:fontFamily="@font/montserrat_medium"
+        android:text="@string/product_details"
+        android:textColor="@color/black"
+        android:textSize="14sp"
+        app:layout_constraintStart_toStartOf="@+id/productTitle"
+        app:layout_constraintTop_toBottomOf="@+id/productPrice" />
+
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/productDescription"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
-        android:text="Product Description"
+        android:fontFamily="@font/montserrat_regular"
+        android:text="@string/product_description"
+        android:textSize="12sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/productPrice" />
+        app:layout_constraintTop_toBottomOf="@+id/productDetails" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
